@@ -140,12 +140,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private Uri saveImageLocally(Intent intent) {
-        Bitmap thumbnail = (Bitmap) intent.getExtras().get("data");
+        Bitmap thumbnail = null;
+        try {
+            thumbnail = (Bitmap) intent.getExtras().get("data");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
 
         createDirectoryInStorage();
 
+        // write file to directory
         File destination = null;
         if (isExternalStorageAvailable) {
             destination = new File(directoryPath, System.currentTimeMillis() + ".jpg");
