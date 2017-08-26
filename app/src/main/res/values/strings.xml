@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ImageCrop</string>
+
+    <string name="message">Capture an image to crop!</string>
+    <string name="capture">Launch Camera</string>
+    <string name="image">Image</string>
+</resources>
